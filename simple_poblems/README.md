@@ -12,3 +12,5 @@ sys.setrecursionlimit(10000)
 fibonacci_memoization - Мемоизация(Дональд Мичи), которая использует словарь для хранения промежуточных результатов
 
 Аналогичное поведение fibonacci_memoization реализовано в декараторе из стандартной библиотеки fibonacci_automemoization
+
+Итеративный метод: функция fibonacci_iteration 
