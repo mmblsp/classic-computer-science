@@ -1,55 +1,56 @@
 """ functions for calculating fibonacci numbers """
-from typing import Generator
+
 from functools import lru_cache
 from typing import Dict
+from typing import Generator
 
 
-def fibonacci_recursive(n: int) -> int:
+def fibonacci_recursive(number: int) -> int:
     """using basic cases"""
-    if n < 2:
-        return n
-    return fibonacci_recursive(n-2) + fibonacci_recursive(n-1)
+    if number < 2:
+        return number
+    return fibonacci_recursive(number-2) + fibonacci_recursive(number-1)
 
 
 memo: Dict[int, int] = {0: 0, 1: 1}
 
 
-def fibonacci_memoization(n: int) -> int:
+def fibonacci_memoization(number: int) -> int:
     """memoization"""
-    if n not in memo:
-        memo[n] = fibonacci_memoization(n-1) + fibonacci_memoization(n-2)
-    return memo[n]
+    if number not in memo:
+        memo[number] = fibonacci_memoization(number-1) + fibonacci_memoization(number-2)
+    return memo[number]
 
 
 @lru_cache(maxsize=None)
-def fibonacci_automemoization(n: int) -> int:
+def fibonacci_automemoization(number: int) -> int:
     """auto-memoization using basic cases"""
-    if n < 2:
-        return n
-    return fibonacci_automemoization(n-2) + fibonacci_automemoization(n-1)
+    if number < 2:
+        return number
+    return fibonacci_automemoization(number-2) + fibonacci_automemoization(number-1)
 
 
-def fibonacci_iteration(n: int) -> int:
+def fibonacci_iteration(number: int) -> int:
     """iteration method"""
-    if n == 0:
-        return n
-    last: int = 0
-    next: int = 1
-    for _ in range(1, n):
-        last, next = next, last + next
-    return next
+    if number == 0:
+        return number
+    lst: int = 0
+    nxt: int = 1
+    for _ in range(1, number):
+        lst, nxt = nxt, lst + nxt
+    return nxt
 
 
-def fibonacci_iteration_generator(n: int) -> Generator[int, None, None]:
+def fibonacci_iteration_generator(number: int) -> Generator[int, None, None]:
     """generation func iteration method"""
     yield 0
-    if n > 0:
+    if number > 0:
         yield 1
-    last: int = 0
-    next: int = 1
-    for _ in range(1, n):
-        last, next = next, last + next
-        yield next
+    lst: int = 0
+    nxt: int = 1
+    for _ in range(1, number):
+        lst, nxt = nxt, lst + nxt
+        yield nxt
 
 
 if __name__ == '__main__':
